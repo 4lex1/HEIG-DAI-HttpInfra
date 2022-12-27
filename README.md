@@ -63,3 +63,4 @@ Comme indiqué, le serveur écoute sur le port 3000. Cependant, l'image docker e
 3) Construire le container en exécutant le script 'build-image.sh'.
 4) Lancer le container en exécutant le script 'run-container.sh'.
 5) Tester le fonctionnement en accédant au container via un navigateur à l'adresse http://<ip>:9090
+6) (Optionnel) : utiliser Postman pour tester le fonctionnement en envoyant un GET à http://<ip>:9090
