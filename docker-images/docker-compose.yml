@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  static:
+    build: ./apache-php-image
+    ports:
+      - "9090:80"
+  dynamic:
+    build: ./express-image
+    ports:
+      - "9091:3000"
