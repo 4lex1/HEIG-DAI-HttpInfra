@@ -1,0 +1,1 @@
+docker run -p 9090:3000 dai/node
