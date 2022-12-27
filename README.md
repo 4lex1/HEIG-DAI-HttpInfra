@@ -46,7 +46,7 @@ Le serveur node fonctionne avec le framework express.js afin d'effectuer le rout
 
 Avec ce code, nous créeons un serveur web qui écoute sur le port 3000 et donc l'unique fonction est de rendre un tableau aléatoire d'animaux lorsqu'une requête est envoyée à la racine du serveur web (c'est à dire le endpoint '/').
 
-Le tableau d'animal contient la structure suivante :
+Le tableau d'animaux contient la structure suivante :
 ```
 {
    animal: "nom de l'animal",
