@@ -17,11 +17,11 @@ Ce dossier '/var/www/html' est le dossier de base du site web pour le serveur Ap
 
 Le serveur Apache tourne sur le port 80 et est mappé depuis l'extérieur via le port 9090. Ce mappage est fait dans le script qui permet de lancer le container : 'run-container.sh'.
 
-Les fichiers de configuration du serveur Apache se trouvent dans /etc/apache2
+Les fichiers de configuration du serveur Apache se trouvent dans /etc/apache2 (sur la VM du container)
 
 #### Utilisation
-1) Cloner le repository
-2) Se rendre dans le dossier /apache-php-image.
+1) Cloner le repository (branche: fb-apache-static)
+2) Se rendre dans le dossier /docker-images/apache-php-image.
 3) Construire le container en exécutant le script 'build-image.sh'.
 4) Lancer le container en exécutant le script 'run-container.sh'.
 5) Tester le fonctionnement en accédant au container via un navigateur à l'adresse http://<ip>:9090
@@ -58,9 +58,24 @@ Le tableau d'animaux contient la structure suivante :
 Comme indiqué, le serveur écoute sur le port 3000. Cependant, le script de lancement est préparé de manière à effectuer un mappage entre le port local 9090 et le port 3000 du container. Ainsi, pour ouvrir la page, il est nécessaire d'envoyer une requête sur le port 9090.
 
 #### Utilisation
-1) Cloner le repository
-2) Se rendre dans le dossier /express-image.
+1) Cloner le repository (branche: fb-express-dynamic)
+2) Se rendre dans le dossier /docker-images/express-image.
 3) Construire le container en exécutant le script 'build-image.sh'.
 4) Lancer le container en exécutant le script 'run-container.sh'.
 5) Tester le fonctionnement en accédant au container via un navigateur à l'adresse http://<ip>:9090
 6) (Optionnel) : utiliser Postman pour tester le fonctionnement en envoyant un GET à http://<ip>:9090
+
+## Etape 3
+Pour l'étape 3, la branche est fb-compose.
+Cette étape rajoute le fichier /docker-images/docker-compose.yml.
+
+Ce fichier permet de lancer simultanément le serveur statique (apache) et le serveur dynamique (node+express).
+
+- Le serveur statique est mappé sur le port 9090
+- Le serveur dynamique est mappé sur le port 9091
+
+#### Utilisation
+1) Cloner le repository (branche: fb-compose)
+2) Se rendre dans le dossier /docker-images/express-image.
+3) Exécuter le script 'run-compose.sh'.
+4) Tester le fonctionnement en accédant au serveur statique via un navigateur à l'adresse http://<ip>:9090 et au serveur dynamique via un navigateur à l'adresse http://<ip>:9091
