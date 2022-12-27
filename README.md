@@ -19,6 +19,8 @@ Ce dossier '/var/www/html' est le dossier de base du site web pour le serveur Ap
 
 Le serveur Apache tourne sur le port 80 et est mappé depuis l'extérieur via le port 9090. Ce mappage est fait dans le script qui permet de lancer le container : 'run-container.sh'.
 
+Les fichiers de configuration du serveur Apache se trouvent dans /etc/apache2
+
 #### Utilisation
 1) Cloner le repository
 2) Se rendre dans le dossier /apache-php-image.
