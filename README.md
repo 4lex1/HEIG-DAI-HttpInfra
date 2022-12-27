@@ -80,13 +80,14 @@ Ce fichier permet de lancer simultanément le serveur statique (apache) et le se
 3) Exécuter le script 'run-compose.sh'.
 4) Tester le fonctionnement en accédant au serveur statique via un navigateur à l'adresse http://<ip>:9090 et au serveur dynamique via un navigateur à l'adresse http://<ip>:9091
 
-## Etape 3a
-Pour l'étape 3, la branche est fb-proxy.
-Dans cette étape, nous avons simplement modifié le fichier /docker-images/docker-compose.yml.
+## Etape 4 et 4a
+Pour les étapes 4 et 4a, la branche est fb-proxy.
+Pour ces étapes, nous avons modifié le fichier /docker-images/docker-compose.yml.
 
 Cette fois-ci, deux instances de chaque serveur sont lancées ainsi qu'un reverse-proxy (Traefik).
 
 Les points importants sont les suivants :
+- le service "reverse_proxy" est le service Traefik : https://doc.traefik.io/traefik/
 - "deploy:" suivi de "replicas: 2" indique à compose de lancer 2 instances.
 - les "labels" sont utilisés par Traefik pour gérer les règles à appliquer aux containers.
 - le label "traefik.http.routers.static.rule=Host(`localhost`)" crée une règle pour le serveur "static" et indique que celui-ci se trouve au endpoint 'localhost'.
