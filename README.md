@@ -94,7 +94,7 @@ Les points importants sont les suivants :
 - - "traefik.http.routers.dynamic.rule=Host(`localhost`) && PathPrefix(`/api`)"
 - - "traefik.http.middlewares.dynamic-strip.stripprefix.prefixes=/api"
 - - "traefik.http.routers.dynamic.middlewares=dynamic-strip@docker"
-permettent, respectivement, de configurer la route du serveur dynamique vers le endpoint "localhost/api" puis de créer un middleware dont la fonction est de retirer le '/api' de l'URL (car le serveur n'est pas codé pour traiter ce qui vient sur le endpoint '/api' mais sur le endpoint '/') et finalement d'appliquer ce middleware au site dynamic.
+- permettent, respectivement, de configurer la route du serveur dynamique vers le endpoint "localhost/api" puis de créer un middleware dont la fonction est de retirer le '/api' de l'URL (car le serveur n'est pas codé pour traiter ce qui vient sur le endpoint '/api' mais sur le endpoint '/') et finalement d'appliquer ce middleware au site dynamic.
 
 Finalement, nous avons aussi ajouté un log dans le index.js du site dynamic afin, grâce à compose, de déterminer quelle instance du serveur a répondu.
 Ainsi, on constate très rapidement en ouvrant n'importe lequel des deux sites et en rafraichissant la page plusieurs fois que chaque instance répond à tour de rôle et donc que le load balacing est bien configuré.
