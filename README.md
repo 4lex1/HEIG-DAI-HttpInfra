@@ -80,7 +80,7 @@ Ce fichier permet de lancer simultanément le serveur statique (apache) et le se
 3) Exécuter le script 'run-compose.sh'.
 4) Tester le fonctionnement en accédant au serveur statique via un navigateur à l'adresse http://<ip>:9090 et au serveur dynamique via un navigateur à l'adresse http://<ip>:9091
 
-## Etape 4 et 4a
+## Etapes 4 et 4a
 Pour les étapes 4 et 4a, la branche est fb-proxy.
 Pour ces étapes, nous avons modifié le fichier /docker-images/docker-compose.yml.
 
