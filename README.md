@@ -55,7 +55,7 @@ Le tableau d'animaux contient la structure suivante :
 }
 ```
 
-Comme indiqué, le serveur écoute sur le port 3000. Cependant, l'image docker est préparée de manière à effectuer un mappage entre le port local 9090 et le port 3000 du container. Ainsi, pour ouvrir la page, il est nécessaire d'envoyer une requête sur le port 9090.
+Comme indiqué, le serveur écoute sur le port 3000. Cependant, le script de lancement est préparé de manière à effectuer un mappage entre le port local 9090 et le port 3000 du container. Ainsi, pour ouvrir la page, il est nécessaire d'envoyer une requête sur le port 9090.
 
 #### Utilisation
 1) Cloner le repository
