@@ -76,6 +76,32 @@ Ce fichier permet de lancer simultanément le serveur statique (apache) et le se
 
 #### Utilisation
 1) Cloner le repository (branche: fb-compose)
-2) Se rendre dans le dossier /docker-images/express-image.
+2) Se rendre dans le dossier /docker-images.
 3) Exécuter le script 'run-compose.sh'.
 4) Tester le fonctionnement en accédant au serveur statique via un navigateur à l'adresse http://<ip>:9090 et au serveur dynamique via un navigateur à l'adresse http://<ip>:9091
+
+## Etape 3a
+Pour l'étape 3, la branche est fb-proxy.
+Dans cette étape, nous avons simplement modifié le fichier /docker-images/docker-compose.yml.
+
+Cette fois-ci, deux instances de chaque serveur sont lancées ainsi qu'un reverse-proxy (Traefik).
+
+Les points importants sont les suivants :
+- "deploy:" suivi de "replicas: 2" indique à compose de lancer 2 instances.
+- les "labels" sont utilisés par Traefik pour gérer les règles à appliquer aux containers.
+- le label "traefik.http.routers.static.rule=Host(`localhost`)" crée une règle pour le serveur "static" et indique que celui-ci se trouve au endpoint 'localhost'.
+- les labels :
+- - "traefik.http.routers.dynamic.rule=Host(`localhost`) && PathPrefix(`/api`)"
+- - "traefik.http.middlewares.dynamic-strip.stripprefix.prefixes=/api"
+- - "traefik.http.routers.dynamic.middlewares=dynamic-strip@docker"
+permettent, respectivement, de configurer la route du serveur dynamique vers le endpoint "localhost/api" puis de créer un middleware dont la fonction est de retirer le '/api' de l'URL (car le serveur n'est pas codé pour traiter ce qui vient sur le endpoint '/api' mais sur le endpoint '/') et finalement d'appliquer ce middleware au site dynamic.
+
+Finalement, nous avons aussi ajouté un log dans le index.js du site dynamic afin, grâce à compose, de déterminer quelle instance du serveur a répondu.
+Ainsi, on constate très rapidement en ouvrant n'importe lequel des deux sites et en rafraichissant la page plusieurs fois que chaque instance répond à tour de rôle et donc que le load balacing est bien configuré.
+
+#### Utilisation
+1) Cloner le repository (branche: fb-proxy)
+2) Se rendre dans le dossier /docker-images.
+3) Exécuter le script 'run-compose.sh'.
+4) Tester le fonctionnement en accédant au serveur statique via un navigateur à l'adresse http://localhost et au serveur dynamique via un navigateur à l'adresse http://localhost/api
+5) (Optionnel) Tester le load balacing en rafraichissant la page et en observant sur le terminal quel instance a traité la requête.
