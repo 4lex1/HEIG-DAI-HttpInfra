@@ -121,3 +121,19 @@ Les fichiers modifiés sont :
 2) Se rendre dans le dossier /docker-images.
 3) Exécuter le script 'run-compose.sh'.
 4) Tester le fonctionnement en accédant au serveur statique via un navigateur à l'adresse http://localhost et vérifier que l'animal spirituel est bien mis à jour toutes les 2 secondes.
+
+## Etape 6: Load balancing: round-robin and sticky sessions
+Pour l'étape 6, la branche est fb-load-balancing.
+Pour cette étape, nous avons modifié le fichier /docker-images/docker-compose.yml et ajouté le label suivant au site static :
+- "traefik.http.services.static.loadbalancer.sticky.cookie=true"  
+
+Cette instruction permet au load balancer de rediriger les sessions qui ont déjà un cookie vers la même instance.
+On peut se rendre compte du bon fonctionnement en ouvrant deux navigateurs (en mode privé) sur le site http://localhost.
+Lorsqu'on rafraichit la page avec un navigateur, on constate que c'est toujours la même instance qui répond. De plus, les deux navigateurs ont accès chacun à une instance différente.
+
+#### Utilisation
+1) Cloner le repository (branche: fb-load-balacing)
+2) Se rendre dans le dossier /docker-images.
+3) Exécuter le script 'run-compose.sh'.
+4) Tester le fonctionnement en accédant au serveur statique via deux navigateurs en navigation privée à l'adresse http://localhost et observer le comportement du load balancer dans la console docker.
+
