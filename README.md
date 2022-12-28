@@ -1,6 +1,6 @@
 # HEIG-DAI-HttpInfra
 
-## Etape 1
+## Etape 1: Static HTTP server with apache httpd
 Pour l'étape 1, la branche est fb-apache-static
 Le contenu de cette étape se trouve dans le dossier /docker-images/apache-php-image.
 Le Dockerfile est relativement simple :
@@ -26,7 +26,7 @@ Les fichiers de configuration du serveur Apache se trouvent dans /etc/apache2 (s
 4) Lancer le container en exécutant le script 'run-container.sh'.
 5) Tester le fonctionnement en accédant au container via un navigateur à l'adresse http://<ip>:9090
 
-## Etape 2
+## Etape 2: Dynamic HTTP server with express.js
 Pour l'étape 2, la branche est fb-express-dynamic.
 Le contenu de cette étape se trouve dans le dossier /docker-images/express-image.
 Le Dockerfile est le suivant :
@@ -65,7 +65,7 @@ Comme indiqué, le serveur écoute sur le port 3000. Cependant, le script de lan
 5) Tester le fonctionnement en accédant au container via un navigateur à l'adresse http://<ip>:9090
 6) (Optionnel) : utiliser Postman pour tester le fonctionnement en envoyant un GET à http://<ip>:9090
 
-## Etape 3
+## Etape 3: Docker compose to build the infrastructure
 Pour l'étape 3, la branche est fb-compose.
 Cette étape rajoute le fichier /docker-images/docker-compose.yml.
 
@@ -80,7 +80,7 @@ Ce fichier permet de lancer simultanément le serveur statique (apache) et le se
 3) Exécuter le script 'run-compose.sh'.
 4) Tester le fonctionnement en accédant au serveur statique via un navigateur à l'adresse http://<ip>:9090 et au serveur dynamique via un navigateur à l'adresse http://<ip>:9091
 
-## Etapes 4 et 4a
+## Etapes 4 et 4a: Reverse proxy with Traefik & Dynamic cluster management
 Pour les étapes 4 et 4a, la branche est fb-proxy.
 Pour ces étapes, nous avons modifié le fichier /docker-images/docker-compose.yml.
 
@@ -108,3 +108,16 @@ Ainsi, on constate très rapidement en ouvrant n'importe lequel des deux sites e
 3) Exécuter le script 'run-compose.sh'.
 4) Tester le fonctionnement en accédant au serveur statique via un navigateur à l'adresse http://localhost et au serveur dynamique via un navigateur à l'adresse http://localhost/api
 5) (Optionnel) Tester le load balacing en rafraichissant la page et en observant sur le terminal quel instance a traité la requête.
+
+
+## Etape 5: AJAX requests with JQuery
+Pour l'étape 5, la branche est fb-ajax
+Les fichiers modifiés sont :
+   - /docker-images/apache-php-image/content/index.html : dans ce fichier, nous avons simplement ajouté une référence au script animals.js ainsi qu'un en-tête supplémentaire pour afficher l'animal spirituel de l'utilisateur.
+   - /docker-images/apache-php-image/content/js/animals.js : ce script permet de charger l'animal spirituel de l'utilisateur et de l'afficher sur la page d'accueil.
+   
+#### Utilisation
+1) Cloner le repository (branche: fb-ajas)
+2) Se rendre dans le dossier /docker-images.
+3) Exécuter le script 'run-compose.sh'.
+4) Tester le fonctionnement en accédant au serveur statique via un navigateur à l'adresse http://localhost et vérifier que l'animal spirituel est bien mis à jour toutes les 2 secondes.
