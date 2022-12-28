@@ -32,3 +32,15 @@ services:
       - "traefik.http.routers.dynamic.rule=Host(`localhost`) && PathPrefix(`/api`)"
       - "traefik.http.middlewares.dynamic-strip.stripprefix.prefixes=/api"
       - "traefik.http.routers.dynamic.middlewares=dynamic-strip@docker"
+      
+  management:
+    build: ./management-image
+    command: -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    deploy:
+      replicas: 1
+    ports:
+      - 80
+    labels:
+      - "traefik.http.routers.management.rule=Host(`manage.localhost`)"   

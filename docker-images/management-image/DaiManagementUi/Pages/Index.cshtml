@@ -1,0 +1,63 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+
+    @if (!string.IsNullOrEmpty(TempData["Message"]?.ToString()))
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+
+    <h1 class="display-4">Containers</h1>
+
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Noms</th>
+                <th>Etat</th>
+                <th>Statut</th>
+                <th>Démarrer / Arrêter</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var container in Docker.GetAllContainers())
+            {
+                <tr>
+                    <td>@string.Join(", ", container.Names)</td>
+                    <td>@container.State</td>
+                    <td>@container.Status</td>
+                    @{
+                        var action = Docker.IsRunning(container.ID) ? "stop" : "start";
+                        var actionName = action == "start" ? "Démarrer" : "Arrêter";
+                        var cl = action == "start" ? "success" : "secondary";
+                    }
+                    <td><a class="text-@cl" href="/?handler=@action&id=@container.ID">@actionName</a></td>
+                    <td><a class="text-danger" href="/?handler=delete&id=@container.ID">Supprimer</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col">
+            <form method="post">
+                <h1>Ajouter une instance</h1>
+
+                <div class="form-group">
+                    <label>Tag</label>
+                    <input class="form-control" type="text" name="tag" />
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Ajouter" />
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
