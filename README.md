@@ -132,7 +132,7 @@ On peut se rendre compte du bon fonctionnement en ouvrant deux navigateurs (en m
 Lorsqu'on rafraichit la page avec un navigateur, on constate que c'est toujours la même instance qui répond. De plus, les deux navigateurs ont accès chacun à une instance différente.
 
 #### Utilisation
-1) Cloner le repository (branche: fb-load-balacing)
+1) Cloner le repository (branche: fb-load-balancing)
 2) Se rendre dans le dossier /docker-images.
 3) Exécuter le script 'run-compose.sh'.
 4) Tester le fonctionnement en accédant au serveur statique via deux navigateurs en navigation privée à l'adresse http://localhost et observer le comportement du load balancer dans la console docker.
