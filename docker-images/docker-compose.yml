@@ -19,7 +19,8 @@ services:
     deploy:
       replicas: 2
     labels:
-      - "traefik.http.routers.static.rule=Host(`localhost`)"      
+      - "traefik.http.routers.static.rule=Host(`localhost`)"
+      - "traefik.http.services.static.loadbalancer.sticky.cookie=true"      
 
   dynamic:
     build: ./express-image
