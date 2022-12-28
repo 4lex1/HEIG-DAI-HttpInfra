@@ -137,3 +137,15 @@ Lorsqu'on rafraichit la page avec un navigateur, on constate que c'est toujours 
 3) Exécuter le script 'run-compose.sh'.
 4) Tester le fonctionnement en accédant au serveur statique via deux navigateurs en navigation privée à l'adresse http://localhost et observer le comportement du load balancer dans la console docker.
 
+## Etape 7: Management UI
+Pour l'étape 7, la branche est fb-management-ui.
+Pour cette étape, nous avons créé une page de management en C# avec le framework ASP.NET ainsi qu'une image docker correspondante chargée automatiquement avec compose.
+
+#### Utilisation
+1) Cloner le repository (branche: fb-management-ui)
+2) Se rendre dans le dossier /docker-images.
+3) Exécuter le script 'run-compose.sh'.
+4) Se rendre sur la page http://manage.localhost
+5) Depuis cette page, vous pouvez démarrer, arrêter, supprimer des containers ainsi qu'en ajouter des nouveaux grâce au formulaire se situant en bas de page. Pour cela, il suffit de saisir le tag de votre image.
+6) (Optionnel) pour tester l'insertion de container, rendez-vous dans /docker-images/apache-php-image/ et exécutez le script ./build-image.sh. Le tag de l'image est alors 'dai/php' que vous pouvez tenter d'insérer dans le formulaire. Finalement, cliquez sur ajouter. Votre container apparaît en mode "created" et vous pouvez le démarrer depuis le UI.
+
