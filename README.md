@@ -111,13 +111,13 @@ Ainsi, on constate très rapidement en ouvrant n'importe lequel des deux sites e
 
 
 ## Etape 5: AJAX requests with JQuery
-Pour l'étape 5, la branche est fb-ajax
+Pour l'étape 5, la branche est fb-ajax.
 Les fichiers modifiés sont :
    - /docker-images/apache-php-image/content/index.html : dans ce fichier, nous avons simplement ajouté une référence au script animals.js ainsi qu'un en-tête supplémentaire pour afficher l'animal spirituel de l'utilisateur.
    - /docker-images/apache-php-image/content/js/animals.js : ce script permet de charger l'animal spirituel de l'utilisateur et de l'afficher sur la page d'accueil.
    
 #### Utilisation
-1) Cloner le repository (branche: fb-ajas)
+1) Cloner le repository (branche: fb-ajax)
 2) Se rendre dans le dossier /docker-images.
 3) Exécuter le script 'run-compose.sh'.
 4) Tester le fonctionnement en accédant au serveur statique via un navigateur à l'adresse http://localhost et vérifier que l'animal spirituel est bien mis à jour toutes les 2 secondes.
